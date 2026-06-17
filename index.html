@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr.Randeep's Neuro and Physio Clinic</title>
+    <style>
+        /* Base Styles & Reset */
+         {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        /* Navigation */
+        header {
+            background-color: #fff;
+            padding: 0.1rem 1%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            flex-direction: column;
+        }
+        /* NEW: Header brand layout to include logo */
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .header-logo {
+            height: 120px;
+            width: 120px;
+             
+            
+        }
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            font-family:'lato',sans-serif;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size:1.2rem;
+            border:1px solid #333;
+            padding:0.5rem 1rem;
+            border-radius:5px;
+            display: inline-block;
+            white-space: nowrap;
+        }
+        nav a:hover {
+            color: #3498db;
+            border:1px solid #333;
+            padding:0.5rem 1rem;
+            border-radius:5px;
+        }
+        .btn-book {
+            background-color: #3498db;
+            color: white !important;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .btn-book:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #e0f7fa 0%, #e8eaf6 100%);
+            padding: 4rem 5%;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 5 rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+            color: #555;
+        }
+
+        /* What We Treat Section */
+        .what-we-treat {
+            padding: 4rem 5%;
+            background-color: #fff;
+        }
+        .treat-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+        }
+        .treat-header h2 {
+            font-size: 2.5rem;
+            color: #1a252f;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .treat-header p {
+            color: #555;
+            font-size: 1.1rem;
+        }
+        .treat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .treat-card {
+            background: #eef4f8; 
+            border-radius: 15px;
+            padding: 2rem;
+            height: 300px; 
+            overflow-y: auto; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+        }
+        .treat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.08);
+        }
+        .treat-card h3 {
+            color: #1a252f;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        .treat-card ul {
+            list-style: none;
+        }
+        .treat-card li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: #34495e;
+            font-size: 1.05rem;
+            transition: color 0.2s ease;
+        }
+        .treat-card li:hover {
+            color: #3498db;
+        }
+        .arrow-icon {
+            background-color: #2c3e50;
+            color: white;
+            border-radius: 50%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 22px;
+            height: 22px;
+            font-size: 12px;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        
+        /* Custom Scrollbar for Treat Cards */
+        .treat-card::-webkit-scrollbar {
+            width: 6px;
+        }
+        .treat-card::-webkit-scrollbar-track {
+            background: #e1e8ed; 
+            border-radius: 10px;
+        }
+        .treat-card::-webkit-scrollbar-thumb {
+            background: #bdc3c7; 
+            border-radius: 10px;
+        }
+        .treat-card::-webkit-scrollbar-thumb:hover {
+            background: #95a5a6; 
+        }
+
+        /* Services Grid */
+        .services {
+            padding: 4rem 5%;
+            background-color: #f9f9f9;
+        }
+        .services-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+            color: #2c3e50;
+        }
+        
+        /* NEW: Continuous moving images slider css */
+        .moving-slider {
+            width: 100%;
+            background: #f9f9f9;
+            padding-bottom: 3rem;
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+        }
+        .slider-track {
+            display: inline-block;
+            animation: scroll 20s linear infinite;
+        }
+        .slider-img {
+            height: 250px;
+            width: auto;
+            border-radius: 12px;
+            margin: 0 15px;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } 
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+        }
+        .card h3 {
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+
+        /* Meet the Doctor Section */
+        .meet-doctor {
+            padding: 2.5 rem 5%;
+            background-color: #eef4f8; 
+            text-align: center;
+        }
+        .meet-doctor-title {
+            font-size: 4 rem;
+            color: #1a252f;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .doctor-profile {
+            background: #fff;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 2rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .doctor-profile:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .doctor-img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #9ca3a8;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        .doctor-img:hover {
+            transform: scale(1.05); 
+        }
+        .doctor-profile h3 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        .doctor-profile p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .social-btn {
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            transition: opacity 0.3s ease, transform 0.2s ease;
+        }
+        .social-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px); 
+        }
+        .btn-instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+        .btn-youtube {
+            background-color: #FF0000;
+        }
+
+        /* Booking Section Placeholder */
+        .booking-section {
+            background-color: #fff;
+            padding: 4rem 5%;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+        .booking-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border: 2px dashed #bdc3c7;
+            background: #fdfdfd;
+            color: #7f8c8d;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        .booking-container:hover {
+            background: #f4f6f7;
+        }
+
+        /* NEW: Floating Action Buttons (Message & WhatsApp) */
+        .floating-widget {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #eef4f8; /* Soft blue block matching reference photo */
+            padding: 10px 10px 10px 15px;
+            border-radius: 0 20px 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 1000;
+            box-shadow: -2px 4px 10px rgba(0,0,0,0.1);
+        }
+        .float-icon {
+            background-color: #1a5276;
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .float-icon:hover {
+            transform: scale(1.1);
+            background-color: #113c59;
+        }
+        .float-icon svg {
+            width: 22px;
+            height: 22px;
+            fill: white;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 3rem 5%;
+        }
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .treat-grid {
+                grid-template-columns: 1fr;
+            }
+            nav ul {
+                display: none; 
+            }
+            .social-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <!-- NEW: Logo combined with Title -->
+        <div class="header-brand">
+            <img src="https://i.ibb.co/Q3RLDNv9/Whats-App-Image-2026-06-16-at-11-41-22-AM.jpg" alt="Clinic Logo" class="header-logo">
+            <div class="logo">Dr. Randeep's Neuro & Physio Clinic</div>
+        </div>
+        <nav>
+            <ul>
+                <b><li><a href="#what-we-treat">What We Treat</a></li></b>
+                <b><li><a href="#services">Specialties</a></li></b>
+                <b><li><a href="#meet-doctor">Meet The Doctor</a></li></b>
+                <b><li><a href="#booking" class="btn-book">Book Appointment</a></li></b>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Advanced Care for Your Body's Framework</h1>
+        <p>Specialized treatments in Neurotherapy, Physiotherapy, Chiropractic Care, and Traditional Bone Setting to help you live pain-free.</p>
+        <a href="#booking" class="btn-book" style="padding: 1rem 2rem; font-size: 1.1rem;">Schedule Your Visit</a>
+    </section>
+
+    <!-- WHAT WE TREAT SECTION -->
+    <section id="what-we-treat" class="what-we-treat">
+        <div class="treat-header">
+            <h2>WHAT WE TREAT</h2>
+            <p>We provide specialized physiotherapy treatments for neurological, orthopedic, musculoskeletal, pediatric, geriatric, and sports-related conditions — addressing a wide range of symptoms and recovery needs.</p>
+        </div>
+        
+        <div class="treat-grid">
+            <!-- Condition Card -->
+            <div class="treat-card">
+                <h3>Condition</h3>
+                <ul>
+                    <li><span class="arrow-icon">➔</span> Migraine</li>
+                    <li><span class="arrow-icon">➔</span> Multiple Sclerosis</li>
+                    <li><span class="arrow-icon">➔</span> Quadriplegia</li>
+                    <li><span class="arrow-icon">➔</span> Ulnar Nerve Injury</li>
+                    <li><span class="arrow-icon">➔</span> Lateral Collateral Ligament (Lcl) Injury</li>
+                    <li><span class="arrow-icon">➔</span> Posterior Cruciate Ligament (Pcl) Injury</li>
+                    <li><span class="arrow-icon">➔</span> Popliteal (Baker's) Cyst</li>
+                    <li><span class="arrow-icon">➔</span> Varicose Veins</li>
+                    <li><span class="arrow-icon">➔</span> Patellar Tendonitis</li>
+                </ul>
+            </div>
+
+            <!-- Symptoms Card -->
+            <div class="treat-card">
+                <h3>Symptoms</h3>
+                <ul>
+                    <li><span class="arrow-icon">➔</span> Muscle Stiffness</li>
+                    <li><span class="arrow-icon">➔</span> Muscle Spasm</li>
+                    <li><span class="arrow-icon">➔</span> Crepitus - Cracking Joints</li>
+                    <li><span class="arrow-icon">➔</span> Numbness And Tingling</li>
+                    <li><span class="arrow-icon">➔</span> Neck Pain</li>
+                </ul>
+            </div>
+
+            <!-- Therapies Offered Card -->
+            <div class="treat-card">
+                <h3>Therapies Offered</h3>
+                <ul>
+                    <li><span class="arrow-icon">➔</span> Interferential Therapy (Ift)</li>
+                    <li><span class="arrow-icon">➔</span> Chiropractic Therapy</li>
+                    <li><span class="arrow-icon">➔</span> Neurotherapy</li>
+                </ul>
+            </div>
+
+            <!-- Services Offered Card -->
+            <div class="treat-card">
+                <h3>Services Offered</h3>
+                <ul>
+                    <li><span class="arrow-icon">➔</span> Chiropractor Treatment</li>
+                    <li><span class="arrow-icon">➔</span> Sports Physiotherapy</li>
+                    <li><span class="arrow-icon">➔</span> Pediatric Physiotherapy</li>
+                    <li><span class="arrow-icon">➔</span> Home Care Physiotherapy</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <h2 class="services-title">Our Specialties</h2>
+        
+        <!-- NEW: Continuous Moving Specialty Images -->
+        <div class="moving-slider">
+            <div class="slider-track">
+                <!-- Original set -->
+                <img src="https://i.ibb.co/cKTtdhwb/Information-Of-Physiotherapist-Job.jpg" alt="Specialties Photo" class="slider-img">
+                <img src="https://i.ibb.co/Y4xF3QFQ/Cupping-Therapy.jpg" alt="Specialties Photo" class="slider-img">
+                <img src="https://i.ibb.co/XxcJ1NJf/download-3.jpg" alt="Specialties Photo" class="slider-img">
+                <img src="https://i.ibb.co/sdK94p2X/Slip-and-Fall-Chiropractic-Care-in-Orlando-and-Kissimmee-FL-Dema-Rehab-Florida-Chiropractor-Servic.jpg" alt="Specialties Photo" class="slider-img">
+                <img src="https://i.ibb.co/Kc6gD85F/Tips-for-Finding-the-Right-Physiotherapy-Clinic.jpg" alt="Specialties Photo" class="slider-img">
+
+                <!-- Duplicate set for infinite loop illusion -->
+                <img src="https://i.ibb.co/7t9PStpJ/Acupuncture-in-Cloverdale-Smart-Motion-Physio.jpg" alt="Specialties Photo" class="slider-img">
+                <img src="https://i.ibb.co/d462CPQV/The-15-Most-Profitable-Small-Business-Industries-in-2016.jpg" alt="Specialties Photo" class="slider-img">
+                <img src="https://i.ibb.co/LXm1B7yV/Physiotherapy-Clinic-Home-Physiotherapy-Treatment-Center-in-Dubai.jpg" alt="Specialties Photo" class="slider-img">
+                <img src="https://i.ibb.co/gby8P24G/3-Reasons-Why-You-Need-to-Stretch-More-and-with-a.jpg" alt="Specialties Photo" class="slider-img">
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>Neurotherapy</h3>
+                <p>Nervous system rehabilitation and stimulation to restore proper communication between your brain and body.</p>
+            </div>
+            <div class="card">
+                <h3>Physiotherapy</h3>
+                <p>Targeted exercises and manual therapy to improve mobility, strength, and recover from acute injuries.</p>
+            </div>
+            <div class="card">
+                <h3>Chiropractic</h3>
+                <p>Spinal adjustments and joint alignment to relieve pressure, reduce pain, and improve overall mechanical function.</p>
+            </div>
+            <div class="card">
+                <h3>Bone Setting</h3>
+                <p>Traditional and modern techniques for correcting dislocations and ensuring proper skeletal alignment.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW MEET THE DOCTOR SECTION -->
+    <section id="meet-doctor" class="meet-doctor">
+        <h2 class="meet-doctor-title">Meet The Doctor</h2>
+        <div class="doctor-profile">
+            <!-- Replace the 'src' link below with the actual URL or file path to the doctor's picture -->
+            <img src="https://i.ibb.co/kghHYY7w/Whats-App-Image-2026-06-17-at-4-09-39-PM-removebg-preview.png" alt="Dr. Randeep Profile Picture" class="doctor-img">
+            <h3>Dr. Randeep</h3>
+            <p>Specialist in Neurotherapy & Physiotherapy</p>
+            
+            <div class="social-links">
+                <!-- Add actual Instagram profile link in the href below -->
+                <a href="https://www.instagram.com/doctorrandeep/" target="_blank" class="social-btn btn-instagram">
+                    Instagram
+                </a>
+                
+                <!-- Add actual YouTube channel link in the href below -->
+                <a href="https://www.youtube.com/@Dr.Randeep" target="_blank" class="social-btn btn-youtube">
+                    YouTube
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="booking" class="booking-section">
+        <h2>Book Your Appointment</h2>
+        <p>Select your preferred service and time slot below.</p>
+        <div class="booking-container">
+            <a href="https://wa.me/919914155052" style="display: flex; align-items: center; justify-content: center; gap: 15px; text-decoration: none; background-color: #25D366; color: white; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 18px; width: fit-content; margin: 0 auto;">
+  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.948h.003c4.368 0 7.927-3.558 7.929-7.93a7.86 7.86 0 0 0-2.325-5.592m-5.607 11.366a6.52 6.52 0 0 1-3.303-.893l-.237-.14-2.455.644.656-2.39-.153-.244a6.52 6.52 0 0 1-1.003-3.493c0-3.597 2.933-6.53 6.532-6.53a6.53 6.53 0 0 1 4.619 1.914 6.53 6.53 0 0 1 1.912 4.62c-.002 3.599-2.935 6.531-6.533 6.531m3.619-4.96c-.199-.1-1.177-.58-1.355-.644-.179-.064-.309-.1-.44.1-.131.199-.508.644-.623.774-.115.13-.23.144-.43.044-1.897-.954-2.658-1.446-3.41-2.742-.2-.343.2-.32.57-.1.332-.613.064-.13-.044-.26-.1-.13-.44-1.058-.6-1.452-.157-.379-.316-.328-.433-.334l-.368-.007c-.13 0-.341.049-.519.244-.179.195-.683.667-.683 1.629s.7 1.9 1.8 3.4c.11.153 2.13 3.254 5.16 4.562.72.311 1.282.497 1.724.637.722.23 1.377.197 1.897.12.58-.087 1.777-.727 2.027-1.43.25-.702.25-1.303.175-1.43-.075-.127-.275-.199-.475-.299"/>
+  </svg>
+  <span>Book Appointment on WhatsApp</span>
+</a>
+        </div>
+    </section>
+
+    <footer>
+        <p><b><strong>Dr. Randeep's Neuro and Physio Clinic</strong></b></p>
+        <p>Chandigarh, India</p>
+        <p>Contact: +91 99141 55052 | drrandeeplmnt@gmail.com</p>
+        <p style="font-size: 0.8rem; margin-top: 1rem;">&copy; 2026 Dr. Randeep's Neuro and Physio Clinic. All rights reserved.</p>
+    </footer>
+
+    <!-- NEW: Floating Action Buttons (Sticky Right Side) -->
+    <div class="floating-widget">
+        <!-- Call/Message Button -->
+        <a href="tel:+919914155052" class="float-icon" title="Call/Message Us">
+            <svg viewBox="0 0 24 24">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+            </svg>
+        </a>
+        <!-- WhatsApp Button -->
+        <a href="https://wa.me/919914155052" class="float-icon" title="WhatsApp Us" target="_blank">
+            <svg viewBox="0 0 24 24">
+                <path d="M12.031 21c-1.609 0-3.187-.419-4.577-1.216l-5.077 1.331 1.35-4.946A9.953 9.953 0 012.062 11C2.062 5.486 6.548 1 12.031 1s9.969 4.486 9.969 10-4.485 10-9.969 10zm-3.056-4.571l.244.144c1.3.774 2.825 1.186 4.385 1.186 5.048 0 9.155-4.108 9.155-9.155S18.653 2.5 13.605 2.5 4.45 6.608 4.45 11.656c0 1.636.435 3.235 1.258 4.606l.16.269-1.026 3.761 3.864-1.021a.49.49 0 00-.619-.7zM16.595 13.567c-.244-.122-1.442-.71-1.666-.791-.223-.081-.387-.122-.549.122-.163.244-.63.791-.773.954-.142.163-.285.183-.529.061-.244-.122-1.029-.379-1.959-1.206-.723-.642-1.21-1.436-1.353-1.68-.142-.244-.015-.377.107-.498.11-.11.244-.285.366-.427.122-.142.163-.244.244-.407.081-.163.041-.305-.02-.427-.061-.122-.549-1.323-.752-1.812-.198-.476-.4-.411-.549-.418-.142-.008-.305-.008-.468-.008-.163 0-.427.061-.65.305-.223.244-.854.834-.854 2.035s.875 2.36 1 2.522c.122.163 1.717 2.623 4.159 3.676.582.251 1.036.4 1.391.512.584.185 1.116.159 1.536.096.469-.071 1.442-.589 1.646-1.159.203-.569.203-1.058.142-1.159-.061-.102-.224-.163-.468-.285z"/>
+            </svg>
+        </a>
+    </div>
+
+</body>
+</html>
